@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "client": "npm start --prefix client",
-    "server": "env-cmd -f server/config/dev.env node server/index.js",
+    "server": "node server/index.js",
     "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
