@@ -2,9 +2,10 @@
   "name": "my-app",
   "version": "1.0.0",
   "scripts": {
-    "client": "npm start --prefix client",
-    "server": "node server/index.js",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "build": "concurrently \"cd client && npm build\" \"cd server && npm build\"",
+    "install": "(cd client && npm) && (cd server && npm)",
+    "start": "concurrently \"cd client && PORT=3000 npm start\" \"cd server && PORT=5000 npm start\"",
+    "start:prod": "cd server && npm start:prod"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
