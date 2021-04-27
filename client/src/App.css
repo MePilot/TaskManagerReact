@@ -1,0 +1,51 @@
+
+.task {
+  background-color: rgb(251,250,173);
+}
+.mydiv {
+  
+  width: 250;
+  height: 200;
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.collapse {
+  overflow: hidden;
+  transition: 0.4s max-height;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes show-loader {
+  0% {
+    opacity: 0;
+    max-height: 50;
+  }
+  50% {
+    opacity: 0.5;
+    max-height: 100;
+  }
+  100% {
+    opacity: 1;
+    max-height: 200;
+  }
+}
