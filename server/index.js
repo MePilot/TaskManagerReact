@@ -1,10 +1,16 @@
 const cron = require('node-cron')
 const express = require('express')
 const app = express()
-const port = process.env.PORT
+const port = process.env.PORT || 5000
+const path = require('path');
 const {sendRemindEmail} = require('./emails/account')
 
 app.use(express.json())
+app.use(express.static(path.join(__dirname, 'client/build')));
+if(process.env.NODE_ENV === 'production') {  app.use(express.static(path.join(__dirname, 'client/build')));    
+
+app.get('*', (req, res) => {    res.sendFile(path.join(__dirname = 'client/build/index.html'));  })}
+
 
 const userRouter = require('./routers/user')
 const taskRouter = require('./routers/task')
