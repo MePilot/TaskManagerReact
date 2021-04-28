@@ -4,7 +4,7 @@
   "scripts": {
     "client": "npm start --prefix client",
     "server": "env-cmd -f server/config/dev.env node server/index.js",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "node server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
