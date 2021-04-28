@@ -25,7 +25,6 @@ export default function AboutPage() {
 
 const styles = {
     card: {
-
         width: '20rem'
     },
     photo: {
@@ -34,5 +33,4 @@ const styles = {
     logos: {
         width: '50px'
     }
-
 }

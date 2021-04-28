@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Container, Form, Button, Image,ProgressBar } from 'react-bootstrap';
+import { Container, Form, Button, Image, ProgressBar } from 'react-bootstrap';
 import axios from 'axios'
 
 export default function ProfilePage(props) {
@@ -23,26 +23,28 @@ export default function ProfilePage(props) {
     const uploadImage = () => {
 
         const xhr = new XMLHttpRequest();
-        
+
         xhr.upload.onprogress = (event) => {
-           setData({...data,progress:event.loaded/event.total*100})
+            setData({ ...data, progress: event.loaded / event.total * 100 })
         }
-            const formData = new FormData()
-            formData.append("avatar", data.filepath);
-            xhr.open('POST', '/users/me/avatar',true);
-            xhr.setRequestHeader('Authorization', props.getToken())
-            xhr.send(formData);
+        xhr.onload = () => {
             window.location.reload()
         }
+        const formData = new FormData()
+        formData.append("avatar", data.filepath);
+        xhr.open('POST', '/users/me/avatar', true);
+        xhr.setRequestHeader('Authorization', props.getToken())
+        xhr.send(formData);
+    }
 
     const deleteAccount = () => {
         if (window.confirm("Are you sure!")) {
             axios.delete('/users/me', { headers: { Authorization: props.getToken() } })
-            .then(()=>{
-                localStorage.removeItem('JWT');
-                window.location.href = '/';
-            }).catch((e)=>console.log(e.response.data.error))
-          } 
+                .then(() => {
+                    localStorage.removeItem('JWT');
+                    window.location.href = '/';
+                }).catch((e) => console.log(e.response.data.error))
+        }
     }
 
     const handleErrors = (error) => {
@@ -50,20 +52,20 @@ export default function ProfilePage(props) {
         const formControlCopy = { ...formControl }
 
         if (err && err.name) {
-           
+
             formControlCopy.name = err.name.message
         }
 
         else formControlCopy.name = ''
 
         if (err && err.email) {
-           
+
             formControlCopy.email = err.email.message
         }
         else formControlCopy.email = ''
 
         if (err && err.password) {
-           
+
             formControlCopy.password = err.password.message
         }
         else formControlCopy.password = ''
@@ -79,26 +81,26 @@ export default function ProfilePage(props) {
         const formControlCopy = { ...formControl }
 
         if (data.password !== data.passwordConfirm) {
-           
-             formControlCopy.passwordConfirm = `Passwords don't match`
-             return setFormControl(formControlCopy)
+
+            formControlCopy.passwordConfirm = `Passwords don't match`
+            return setFormControl(formControlCopy)
         }
 
         else formControlCopy.passwordConfirm = ``
 
-        axios.patch('/users/me',{
+        axios.patch('/users/me', {
 
             name: data.name,
             password: data.password
-        },{ headers: { Authorization: props.getToken() } }
+        }, { headers: { Authorization: props.getToken() } }
 
         ).then((response) => {
-          alert('OK')
+            alert('OK')
 
         }).catch(err => {
             if (err.response) {
                 handleErrors(err.response.request.response)
-                
+
             } else if (err.request) {
                 console.log(err.request)
                 // client never received a response, or request never left
@@ -108,18 +110,18 @@ export default function ProfilePage(props) {
         })
     }
     return (
-        <Container className="d-flex justify-content-center align-items-center" style={{ marginTop:10, height: window.innerHeight - 54 }}>
+        <Container className="d-flex justify-content-center align-items-center" style={{ marginTop: 10, height: window.innerHeight - 54 }}>
 
-            <Form noValidate onSubmit={formValidation}>
-                
-                <Form.Group controlId="formGroupImage">
-                    <Image src={`/users/${props.user._id}/avatar`} roundedCircle style={{margin:50}}/>
+            <Form noValidate onSubmit={formValidation} >
+
+                <Form.Group className="d-flex justify-content-center" controlId="formGroupImage">
+                    <Image src={props.user.hasAvatar ? `/users/${props.user._id}/avatar` : 'user.png'} roundedCircle style={{ width: 200, height: 200 }} />
                 </Form.Group>
                 <Form.Group controlId="formGroupFile">
                     <Form.Control type="file" name='filepath' placeholder="Enter name" onChange={handleFiles} />
                 </Form.Group>
                 <Form.Group controlId="formGroupChangePhoto">
-                    <Button onClick={()=>uploadImage()}>Change photo</Button>
+                    <Button onClick={() => uploadImage()}>Change photo</Button>
                 </Form.Group>
                 <Form.Group controlId="formGroupPBar">
                     <ProgressBar animated now={data.progress} />
@@ -141,9 +143,9 @@ export default function ProfilePage(props) {
                 </Form.Group>
                 <Form.Group controlId="form" className="d-flex justify-content-around">
                     <Button type="submit">Update</Button>
-                    <Button onClick={()=>deleteAccount()}>Delete account</Button>
+                    <Button onClick={() => deleteAccount()}>Delete account</Button>
                 </Form.Group>
-               
+
             </Form>
 
         </Container>

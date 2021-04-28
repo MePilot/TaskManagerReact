@@ -10,6 +10,5 @@ export default function LogRes() {
       <Button variant="outline-warning" className="m-2" onClick={()=>history.push('/registration')} role="button">Register</Button>
       <Button variant="outline-warning" className="m-2" onClick={()=>history.push('/login')} role="button">Login</Button>
     </Nav>
-
   )
 }

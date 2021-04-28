@@ -18,30 +18,26 @@ export default function Registration(props) {
     }
 
     const handleErrors = (error) => {
-        const err = JSON.parse(error).errors
+       
         const formControlCopy = { ...formControl }
-
-        if (data.password !== data.passwordConfirm) {
-            formControlCopy.passwordConfirm = `Passwords don't match`
-        }
-
-        else formControlCopy.passwordConfirm = ``
+       
+        const err = JSON.parse(error).errors
 
         if (err && err.name) {
-           
-            formControlCopy.name = err.name.message
 
+            formControlCopy.name = err.name.message
         }
+
         else formControlCopy.name = ''
 
         if (err && err.email) {
-           
+
             formControlCopy.email = err.email.message
         }
         else formControlCopy.email = ''
 
         if (err && err.password) {
-           
+
             formControlCopy.password = err.password.message
         }
         else formControlCopy.password = ''
@@ -54,6 +50,15 @@ export default function Registration(props) {
         event.preventDefault();
         event.stopPropagation();
 
+        const formControlCopy = { ...formControl }
+       
+        if (data.password !== data.passwordConfirm) {
+            formControlCopy.passwordConfirm = `Passwords don't match`
+            return setFormControl(formControlCopy)
+        }
+
+        else formControlCopy.passwordConfirm = ``
+        
         axios.post('/users', {
 
             name: data.name,
@@ -63,14 +68,15 @@ export default function Registration(props) {
         }
 
         ).then((response) => {
-            localStorage.setItem('JWT', response.data.token);
-            props.setToken(response.data.token)
-            props.history.push('/')
-
+            
+                localStorage.setItem('JWT', response.data.token);
+                props.setToken(response.data.token)
+                props.history.push('/')
+            
         }).catch(err => {
             if (err.response) {
                 handleErrors(err.response.request.response)
-               
+
             } else if (err.request) {
                 console.log('Error')
                 // client never received a response, or request never left
@@ -82,7 +88,7 @@ export default function Registration(props) {
 
     return (
         <Container className="d-flex justify-content-center align-items-center" style={{ height: window.innerHeight - 54 }}>
-            <Form noValidate onSubmit={formValidation}>
+            <Form noValidate onSubmit={formValidation} style={{borderStyle:'solid', padding:15}}>
 
                 <Form.Group controlId="formGroupName">
                     <Form.Label>Name</Form.Label>
@@ -106,8 +112,8 @@ export default function Registration(props) {
                     <Form.Control.Feedback type="invalid">{formControl.password}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group controlId="formGroupConfirmPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" isInvalid={formControl.passwordConfirm} placeholder="Retypepassword" value={data.passwordConfirm} name='passwordConfirm' onChange={handleChange} />
+                    <Form.Label>Password confirmation</Form.Label>
+                    <Form.Control type="password" isInvalid={formControl.passwordConfirm} placeholder="Retype password" value={data.passwordConfirm} name='passwordConfirm' onChange={handleChange} />
                     <Form.Control.Feedback type="invalid">{formControl.passwordConfirm}</Form.Control.Feedback>
                 </Form.Group>
                 <Button type="submit">Register</Button>

@@ -46,7 +46,7 @@ function App() {
           <Route exact path="/about" render={props => <AboutPage  {...props} />} />
           <Route exact path="/registration" render={props => <Registration  {...props} setToken={setToken} />} />
           <Route exact path="/login" render={props => <LoginPage  {...props} setToken={setToken} />} />
-          <Route exact path="/profile" render={props => <ProfilePage  {...props} user={user} getToken={getToken} />} />
+          <Route exact path="/profile" render={props => <ProfilePage  {...props} user={user} getToken={getToken}/>} />
           <Route exact path="/mytasks" render={props => <TasksPage {...props} token={token} />} />
         </Switch>
       </Router>

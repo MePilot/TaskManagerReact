@@ -2,10 +2,11 @@
   "name": "my-app",
   "version": "1.0.0",
   "scripts": {
-    "build": "concurrently \"cd client && npm build\" \"cd server && npm build\"",
-    "install": "(cd client && npm) && (cd server && npm)",
-    "start": "concurrently \"cd client && PORT=3000 npm start\" \"cd server && PORT=5000 npm start\"",
-    "start:prod": "cd server && npm start:prod"
+    "client": "npm start --prefix client",
+    "server": "env-cmd -f server/config/dev.env node server/index.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

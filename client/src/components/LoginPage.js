@@ -56,7 +56,7 @@ export default function LoginPage(props) {
 
     return (
         <Container className="d-flex justify-content-center align-items-center" style={{ height: window.innerHeight - 54 }}>
-            <Form noValidate onSubmit={formValidation}>
+            <Form noValidate onSubmit={formValidation} style={{borderStyle:'solid', padding:15}}>
                 <Form.Group controlId="formGroupEmail">
                     <Form.Label>Email address</Form.Label>
                     <InputGroup hasValidation>
@@ -78,4 +78,3 @@ export default function LoginPage(props) {
         </Container>
     )
 }
-
