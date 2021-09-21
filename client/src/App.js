@@ -29,7 +29,7 @@ function App() {
   }, [token]);
 
   const logOut = () => {
-    axios.post('/users/logout', { withCredentials: true }, { headers: { Authorization: token } }).then((res) => {
+    axios.post('/users/logout', { headers: { Authorization: token } }).then((res) => {
       localStorage.removeItem('JWT')
       setToken(null)
     }).catch((e) => console.log(e))
