@@ -1,15 +1,15 @@
-import { Card, Container, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Card, Container, ListGroup, ListGroupItem , Row} from 'react-bootstrap';
 
 export default function AboutPage() {
 
     return (
-        <Container className="d-flex justify-content-center align-items-center" style={{ height: window.innerHeight - 54 }}>
+        <Container className="d-flex justify-content-center align-items-center mt-4">
             <Card style={styles.card}>
                 <Card.Img variant="top" src="me.jpeg" />
                 <Card.Body>
                     <Card.Title>About me</Card.Title>
                     <Card.Text>
-                        Hi! I am a beginner software developer and this is my first REACT FULLSTACK WEBSITE
+                        Hi! I am a beginner Web developer and this is my pet React Full Stack WebApp
                     </Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">

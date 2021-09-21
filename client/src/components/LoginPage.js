@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import { Container, Form, Button, InputGroup } from 'react-bootstrap';
+import { Container, Form, Button, InputGroup,Row } from 'react-bootstrap';
 
 export default function LoginPage(props) {
 
@@ -55,8 +55,10 @@ export default function LoginPage(props) {
     }
 
     return (
-        <Container className="d-flex justify-content-center align-items-center" style={{ height: window.innerHeight - 54 }}>
-            <Form noValidate onSubmit={formValidation} style={{borderStyle:'solid', padding:15}}>
+        <Container style={{ height: window.innerHeight }}>
+      <Row className="h-100">
+        <Container className="my-auto">
+        <Form noValidate onSubmit={formValidation} style={{borderStyle:'solid', padding:15}}>
                 <Form.Group controlId="formGroupEmail">
                     <Form.Label>Email address</Form.Label>
                     <InputGroup hasValidation>
@@ -74,7 +76,9 @@ export default function LoginPage(props) {
                 </Form.Group>
                 <Button type="submit">Login</Button>
             </Form>
-            
         </Container>
+      </Row>
+    </Container>
+        
     )
 }

@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-import { Container, Form, Button, InputGroup } from 'react-bootstrap';
+import { Container, Form, Button, InputGroup,Row } from 'react-bootstrap';
 import React, { useState } from 'react';
 
 export default function Registration(props) {
@@ -87,8 +87,10 @@ export default function Registration(props) {
     }
 
     return (
-        <Container className="d-flex justify-content-center align-items-center" style={{ height: window.innerHeight - 54 }}>
-            <Form noValidate onSubmit={formValidation} style={{borderStyle:'solid', padding:15}}>
+        <Container style={{ height: window.innerHeight }}>
+      <Row className="h-100">
+        <Container className="my-auto">
+        <Form noValidate onSubmit={formValidation} style={{borderStyle:'solid', padding:15}}>
 
                 <Form.Group controlId="formGroupName">
                     <Form.Label>Name</Form.Label>
@@ -119,5 +121,8 @@ export default function Registration(props) {
                 <Button type="submit">Register</Button>
             </Form>
         </Container>
+      </Row>
+    </Container>
+        
     )
 }

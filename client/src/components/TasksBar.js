@@ -39,7 +39,7 @@ export default function TasksBar(props) {
 
       <Button variant="info" onClick={() => setSortToggle(!sortToggle)}>
         <FaSortAmountUpAlt style={{marginRight:5}}></FaSortAmountUpAlt>
-          Sort by</Button>
+         </Button>
 
     </Navbar>
   )

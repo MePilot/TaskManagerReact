@@ -1,22 +1,27 @@
-import {Image, Container, Row } from 'react-bootstrap';
+import { Image, Container, Row } from 'react-bootstrap';
 
 export default function HomePage() {
 
   return (
 
-    <Container style={{ marginTop: 150 }}>
-      <Row>
-        <Container className="d-flex justify-content-center">
-          <h4 style={styles.desc}>
-            Create your profile. Store and manage your tasks and notes. Receive reminder emails.
-        </h4>
-        </Container>
-      </Row>
-      <Row>
-        <Container className="d-flex justify-content-center align-items-center">
-          <Image src="logo192.png" rounded style={styles.logos} />
-          <Image src="nodejs.png" rounded style={styles.logos} />
-          <Image src="mongodb.png" rounded style={styles.logos} />
+    <Container style={{ height: window.innerHeight }}>
+      <Row className="h-100">
+        <Container className="my-auto">
+          <Row>
+            <Container className="d-flex justify-content-center align-items-center">
+              <h4 style={styles.desc}>
+                Create your profile. Store and manage your notes. Receive reminder emails.
+              </h4>
+            </Container>
+
+          </Row>
+          <Row>
+            <Container className="d-flex justify-content-center align-items-center">
+              <Image src="logo192.png" rounded style={styles.logos} />
+              <Image src="nodejs.png" rounded style={styles.logos} />
+              <Image src="mongodb.png" rounded style={styles.logos} />
+            </Container>
+          </Row>
         </Container>
       </Row>
     </Container>
