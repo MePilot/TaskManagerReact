@@ -12,12 +12,16 @@ export default function NavBar(props) {
       <Navbar.Brand onClick={()=>history.push('/')}>Task Manager</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
+        
         <Nav className="mr-auto">
           <Nav.Link onClick={()=>history.push('/')}>Home</Nav.Link>
           <Nav.Link  onClick={()=>history.push('/about')}>About</Nav.Link>
-          {props.token ? <Nav.Link onClick={()=>history.push('/mytasks')}>My Tasks</Nav.Link> : null}
+          {props.user ? <Nav.Link onClick={()=>history.push('/mytasks')}>My tasks</Nav.Link> : null}
         </Nav>
-        {!props.token ? <LogRes></LogRes> : <LoggedIn user={props.user} logOut={props.logOut}></LoggedIn>}
+          <Nav>
+          {!props.user ? <LogRes></LogRes> : <LoggedIn user={props.user} logOut={props.logOut}></LoggedIn>}
+          </Nav>
+   
       </Navbar.Collapse>
       
     </Navbar>

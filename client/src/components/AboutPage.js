@@ -1,4 +1,4 @@
-import { Card, Container, ListGroup, ListGroupItem , Row} from 'react-bootstrap';
+import { Card, Container, ListGroup, ListGroupItem} from 'react-bootstrap';
 
 export default function AboutPage() {
 

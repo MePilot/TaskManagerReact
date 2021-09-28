@@ -12,24 +12,27 @@ import TasksPage from './components/TasksPage';
 
 function App() {
   
-  const [token, setToken] = useState(localStorage.getItem('JWT'));
+  const [token, setToken] = useState(localStorage.getItem('JWT') ? localStorage.getItem('JWT') : '');
   const [user, setUser] = useState('');
-
+  
   const getToken = () => {
     return token
   }
+  
   useEffect(() => {
 
-    const auth = () => {
-      axios.get('/users/me', { headers: { Authorization: token } }).then((res) => {
+    const auth = async () => {
+      await axios.get('/users/me', { headers: { Authorization: token } }).then((res) => {
         setUser(res.data)
-      })
+      }).catch((e)=>console.log(e))
     }
     auth()
   }, [token]);
 
-  const logOut = () => {
-    axios.post('/users/logout', { headers: { Authorization: token } }).then((res) => {
+  const logOut = async () => {
+  
+    await axios.post('/users/logout', { headers: { Authorization: token } }).then((res) => {
+     
       localStorage.removeItem('JWT')
       setToken(null)
     }).catch((e) => console.log(e))
@@ -40,7 +43,7 @@ function App() {
     <div className="App">
 
       <Router>
-        <NavBar user={user} token={token} logOut={logOut}></NavBar>
+        <NavBar user={user} logOut={logOut}></NavBar>
         <Switch>
           <Route exact path="/" render={props => <HomePage {...props} userToken={token} />} />
           <Route exact path="/about" render={props => <AboutPage  {...props} />} />

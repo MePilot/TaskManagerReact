@@ -5,7 +5,13 @@ import React, { useState } from 'react';
 
 export default function Registration(props) {
 
-    const [data, setData] = useState({});
+    const [data, setData] = useState(
+        {name: '',
+         email: '',
+        password: '',
+        passwordConfirm: ''}
+        );
+        
     const [formControl, setFormControl] = useState({
         name: '',
         email: '',
