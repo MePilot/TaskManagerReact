@@ -11,28 +11,28 @@ import ProfilePage from './components/ProfilePage';
 import TasksPage from './components/TasksPage';
 
 function App() {
-  
+
   const [token, setToken] = useState(localStorage.getItem('JWT'));
   const [user, setUser] = useState('');
-  
+
   const getToken = () => {
     return token
   }
-  
+
   useEffect(() => {
 
     const auth = async () => {
       await axios.get('/users/me', { headers: { Authorization: token } }).then((res) => {
         setUser(res.data)
-      }).catch((e)=>console.log(e))
+      }).catch((e) => console.log(e))
     }
     auth()
   }, [token]);
 
   const logOut = async () => {
-  
+
     await axios.post('/users/logout', { headers: { Authorization: token } }).then((res) => {
-     
+
       localStorage.removeItem('JWT')
       setToken(null)
     }).catch((e) => console.log(e))
@@ -48,7 +48,7 @@ function App() {
           <Route exact path="/about" render={props => <AboutPage  {...props} />} />
           <Route exact path="/registration" render={props => <Registration  {...props} setToken={setToken} />} />
           <Route exact path="/login" render={props => <LoginPage  {...props} setToken={setToken} />} />
-          <Route exact path="/profile" render={props => <ProfilePage  {...props} user={user} getToken={getToken}/>} />
+          <Route exact path="/profile" render={props => <ProfilePage  {...props} user={user} getToken={getToken} />} />
           <Route exact path="/mytasks" render={props => <TasksPage {...props} token={token} />} />
         </Switch>
       </Router>

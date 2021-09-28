@@ -1,4 +1,4 @@
-import { Card, Container, ListGroup, ListGroupItem} from 'react-bootstrap';
+import { Card, Container, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 export default function AboutPage() {
 
@@ -15,7 +15,7 @@ export default function AboutPage() {
                 <ListGroup className="list-group-flush">
                     <ListGroupItem>
                         Written by <a href="mailto:nebra2012@gmail.com">Slava Vorontsov</a>.<br></br>
-                            Beer Sheva, Israel<br></br>
+                        Beer Sheva, Israel<br></br>
                     </ListGroupItem>
                 </ListGroup>
             </Card>

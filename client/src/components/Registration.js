@@ -1,17 +1,19 @@
 
 import axios from 'axios'
-import { Container, Form, Button, InputGroup,Row } from 'react-bootstrap';
+import { Container, Form, Button, InputGroup, Row } from 'react-bootstrap';
 import React, { useState } from 'react';
 
 export default function Registration(props) {
 
     const [data, setData] = useState(
-        {name: '',
-         email: '',
-        password: '',
-        passwordConfirm: ''}
-        );
-        
+        {
+            name: '',
+            email: '',
+            password: '',
+            passwordConfirm: ''
+        }
+    );
+
     const [formControl, setFormControl] = useState({
         name: '',
         email: '',
@@ -24,9 +26,9 @@ export default function Registration(props) {
     }
 
     const handleErrors = (error) => {
-       
+
         const formControlCopy = { ...formControl }
-       
+
         const err = JSON.parse(error).errors
 
         if (err && err.name) {
@@ -57,14 +59,14 @@ export default function Registration(props) {
         event.stopPropagation();
 
         const formControlCopy = { ...formControl }
-       
+
         if (data.password !== data.passwordConfirm) {
             formControlCopy.passwordConfirm = `Passwords don't match`
             return setFormControl(formControlCopy)
         }
 
         else formControlCopy.passwordConfirm = ``
-        
+
         axios.post('/users', {
 
             name: data.name,
@@ -74,11 +76,11 @@ export default function Registration(props) {
         }
 
         ).then((response) => {
-            
-                localStorage.setItem('JWT', response.data.token);
-                props.setToken(response.data.token)
-                props.history.push('/')
-            
+
+            localStorage.setItem('JWT', response.data.token);
+            props.setToken(response.data.token)
+            props.history.push('/')
+
         }).catch(err => {
             if (err.response) {
                 handleErrors(err.response.request.response)
@@ -94,41 +96,41 @@ export default function Registration(props) {
 
     return (
         <Container style={{ height: window.innerHeight }}>
-      <Row className="h-100">
-        <Container className="my-auto">
-        <Form noValidate onSubmit={formValidation} style={{borderStyle:'solid', padding:15}}>
+            <Row className="h-100">
+                <Container className="my-auto">
+                    <Form noValidate onSubmit={formValidation} style={{ borderStyle: 'solid', padding: 15 }}>
 
-                <Form.Group controlId="formGroupName">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" isInvalid={formControl.name} value={data.name} name='name' placeholder="Enter name" onChange={handleChange} />
-                    <Form.Control.Feedback type="invalid">{formControl.name}</Form.Control.Feedback>
-                </Form.Group>
+                        <Form.Group controlId="formGroupName">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control type="text" isInvalid={formControl.name} value={data.name} name='name' placeholder="Enter name" onChange={handleChange} />
+                            <Form.Control.Feedback type="invalid">{formControl.name}</Form.Control.Feedback>
+                        </Form.Group>
 
-                <Form.Group controlId="formGroupEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <InputGroup hasValidation>
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <Form.Control type="email" isInvalid={formControl.email} value={data.email} placeholder="Enter email" name='email' onChange={handleChange} />
-                        <Form.Control.Feedback type="invalid">{formControl.email}</Form.Control.Feedback>
-                    </InputGroup>
-                </Form.Group>
-                <Form.Group controlId="formGroupPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" isInvalid={formControl.password} placeholder="Password" value={data.password} name='password' onChange={handleChange} />
-                    <Form.Control.Feedback type="invalid">{formControl.password}</Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group controlId="formGroupConfirmPassword">
-                    <Form.Label>Password confirmation</Form.Label>
-                    <Form.Control type="password" isInvalid={formControl.passwordConfirm} placeholder="Retype password" value={data.passwordConfirm} name='passwordConfirm' onChange={handleChange} />
-                    <Form.Control.Feedback type="invalid">{formControl.passwordConfirm}</Form.Control.Feedback>
-                </Form.Group>
-                <Button type="submit">Register</Button>
-            </Form>
+                        <Form.Group controlId="formGroupEmail">
+                            <Form.Label>Email address</Form.Label>
+                            <InputGroup hasValidation>
+                                <InputGroup.Prepend>
+                                    <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <Form.Control type="email" isInvalid={formControl.email} value={data.email} placeholder="Enter email" name='email' onChange={handleChange} />
+                                <Form.Control.Feedback type="invalid">{formControl.email}</Form.Control.Feedback>
+                            </InputGroup>
+                        </Form.Group>
+                        <Form.Group controlId="formGroupPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" isInvalid={formControl.password} placeholder="Password" value={data.password} name='password' onChange={handleChange} />
+                            <Form.Control.Feedback type="invalid">{formControl.password}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group controlId="formGroupConfirmPassword">
+                            <Form.Label>Password confirmation</Form.Label>
+                            <Form.Control type="password" isInvalid={formControl.passwordConfirm} placeholder="Retype password" value={data.passwordConfirm} name='passwordConfirm' onChange={handleChange} />
+                            <Form.Control.Feedback type="invalid">{formControl.passwordConfirm}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Button type="submit">Register</Button>
+                    </Form>
+                </Container>
+            </Row>
         </Container>
-      </Row>
-    </Container>
-        
+
     )
 }

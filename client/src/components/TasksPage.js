@@ -51,7 +51,7 @@ export default function TaskPage(props) {
             setTasks(res.data)
         })
             .catch((e) => console.log(e))
-    }, [sortBy,props.token]);
+    }, [sortBy, props.token]);
 
     return (
 

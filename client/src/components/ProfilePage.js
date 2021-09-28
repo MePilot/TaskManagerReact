@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Container, Form, Button, Image, ProgressBar } from 'react-bootstrap';
 import axios from 'axios'
@@ -111,42 +110,42 @@ export default function ProfilePage(props) {
     }
     return (
         <Container className="d-flex justify-content-center align-items-center mt-4">
-        <Form noValidate onSubmit={formValidation} >
+            <Form noValidate onSubmit={formValidation} >
 
-<Form.Group className="d-flex justify-content-center" controlId="formGroupImage">
-    <Image src={props.user.hasAvatar ? `/users/${props.user._id}/avatar` : 'user.png'} roundedCircle style={{ width: 200, height: 200 }} />
-</Form.Group>
-<Form.Group controlId="formGroupFile">
-    <Form.Control type="file" name='filepath' placeholder="Enter name" onChange={handleFiles} />
-</Form.Group>
-<Form.Group controlId="formGroupChangePhoto">
-    <Button onClick={() => uploadImage()}>Change photo</Button>
-</Form.Group>
-<Form.Group controlId="formGroupPBar">
-    <ProgressBar animated now={data.progress} />
-</Form.Group>
-<Form.Group controlId="formGroupName">
-    <Form.Label>Name</Form.Label>
-    <Form.Control type="text" isInvalid={formControl.name} value={data.name} name='name' placeholder="Enter name" onChange={handleChange} />
-    <Form.Control.Feedback type="invalid">{formControl.name}</Form.Control.Feedback>
-</Form.Group>
-<Form.Group controlId="formGroupPassword">
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" isInvalid={formControl.password} placeholder="Password" value={data.password} name='password' onChange={handleChange} />
-    <Form.Control.Feedback type="invalid">{formControl.password}</Form.Control.Feedback>
-</Form.Group>
-<Form.Group controlId="formGroupConfirmPassword">
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" isInvalid={formControl.passwordConfirm} placeholder="Retypepassword" value={data.passwordConfirm} name='passwordConfirm' onChange={handleChange} />
-    <Form.Control.Feedback type="invalid">{formControl.passwordConfirm}</Form.Control.Feedback>
-</Form.Group>
-<Form.Group controlId="form" className="d-flex justify-content-around">
-    <Button type="submit">Update</Button>
-    <Button onClick={() => deleteAccount()}>Delete account</Button>
-</Form.Group>
+                <Form.Group className="d-flex justify-content-center" controlId="formGroupImage">
+                    <Image src={props.user.hasAvatar ? `/users/${props.user._id}/avatar` : 'user.png'} roundedCircle style={{ width: 200, height: 200 }} />
+                </Form.Group>
+                <Form.Group controlId="formGroupFile">
+                    <Form.Control type="file" name='filepath' placeholder="Enter name" onChange={handleFiles} />
+                </Form.Group>
+                <Form.Group controlId="formGroupChangePhoto">
+                    <Button onClick={() => uploadImage()}>Change photo</Button>
+                </Form.Group>
+                <Form.Group controlId="formGroupPBar">
+                    <ProgressBar animated now={data.progress} />
+                </Form.Group>
+                <Form.Group controlId="formGroupName">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control type="text" isInvalid={formControl.name} value={data.name} name='name' placeholder="Enter name" onChange={handleChange} />
+                    <Form.Control.Feedback type="invalid">{formControl.name}</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group controlId="formGroupPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" isInvalid={formControl.password} placeholder="Password" value={data.password} name='password' onChange={handleChange} />
+                    <Form.Control.Feedback type="invalid">{formControl.password}</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group controlId="formGroupConfirmPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" isInvalid={formControl.passwordConfirm} placeholder="Retypepassword" value={data.passwordConfirm} name='passwordConfirm' onChange={handleChange} />
+                    <Form.Control.Feedback type="invalid">{formControl.passwordConfirm}</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group controlId="form" className="d-flex justify-content-around">
+                    <Button type="submit">Update</Button>
+                    <Button onClick={() => deleteAccount()}>Delete account</Button>
+                </Form.Group>
 
-</Form>
-    </Container>
-      
+            </Form>
+        </Container>
+
     )
 }
