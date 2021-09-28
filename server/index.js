@@ -5,11 +5,13 @@ const port = process.env.PORT || 3000
 const path = require('path');
 const {sendRemindEmail} = require('./emails/account')
 
+console.log('AAAAAAAAAAAAAAAAAAAA : '+ path.resolve(process.cwd(),'client','build','index.html'))
+
 app.use(express.json())
 //app.use(express.static(path.join(__dirname, 'client/build')));
 
 if(process.env.NODE_ENV === 'production') {  
-    app.use(express.static('client/build'));    
+    app.use(path.resolve(process.cwd(),'client','build'));    
 
 app.get('*', (req, res) => {
         res.sendFile(path.resolve(process.cwd(),'client','build','index.html'));  
