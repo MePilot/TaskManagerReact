@@ -5,12 +5,7 @@ const port = process.env.PORT
 const path = require('path');
 const {sendRemindEmail} = require('./emails/account')
 
-console.log('AAAAAAAAAAAAAAAAAAAA : '+ path.join(process.cwd(),'client','build','index.html'))
-
 app.use(express.json())
-//app.use(express.dsstatic(path.join(__dirname, 'client/build')));
-
-
 
 const userRouter = require('./routers/user')
 const taskRouter = require('./routers/task')
@@ -36,6 +31,7 @@ cron.schedule('0 0 12 * * *', async () => {
     });
  
 });
+
 if(process.env.NODE_ENV === 'production') {  
     console.log('hgfhfg')
     app.use(express.static(path.join(__dirname, '/client/build')));    
@@ -44,7 +40,7 @@ app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname,'client','build','index.html'));  
     })
     }
-    
+
 app.listen(port, ()=> {
     console.log('Server is up')
 })

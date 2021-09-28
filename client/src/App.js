@@ -13,7 +13,7 @@ import TasksPage from './components/TasksPage';
 function App() {
   
   const [token, setToken] = useState(localStorage.getItem('JWT'));
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState('');
   
   const getToken = () => {
     return token
@@ -37,7 +37,6 @@ function App() {
       setToken(null)
     }).catch((e) => console.log(e))
   }
-console.log('THE USER IS: '+ user)
   return (
 
     <div className="App">
