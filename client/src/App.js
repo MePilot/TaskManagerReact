@@ -14,7 +14,7 @@ function App() {
   
   const [token, setToken] = useState(localStorage.getItem('JWT') ? localStorage.getItem('JWT') : '');
   const [user, setUser] = useState('');
-  localStorage.removeItem('JWT')
+  
   const getToken = () => {
     return token
   }
