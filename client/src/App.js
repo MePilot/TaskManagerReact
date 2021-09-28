@@ -12,8 +12,8 @@ import TasksPage from './components/TasksPage';
 
 function App() {
   
-  const [token, setToken] = useState('');
-  const [user, setUser] = useState('');
+  const [token, setToken] = useState(null);
+  const [user, setUser] = useState(null);
   
   const getToken = () => {
     return token
@@ -37,7 +37,7 @@ function App() {
       setToken(null)
     }).catch((e) => console.log(e))
   }
-
+console.log(user)
   return (
 
     <div className="App">
