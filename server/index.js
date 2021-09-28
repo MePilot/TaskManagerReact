@@ -1,7 +1,7 @@
 const cron = require('node-cron')
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 3000
 const path = require('path');
 const {sendRemindEmail} = require('./emails/account')
 
