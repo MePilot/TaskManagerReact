@@ -6,7 +6,7 @@
     "server": "env-cmd -f server/config/dev.env node server/index.js",
     "start": "node server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -16,8 +16,6 @@
     "express": "^4.17.1",
     "jquery": "^3.6.0",
     "node-cron": "^3.0.0",
-    "nodecron": "^0.2.0",
-    "popper.js": "^1.16.1",
     "react-bootstrap": "^2.0.0-rc.0"
   },
   "devDependencies": {
