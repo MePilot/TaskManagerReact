@@ -12,7 +12,7 @@ import TasksPage from './components/TasksPage';
 
 function App() {
 
-  const [token, setToken] = useState(localStorage.getItem('JWT'));
+  const [token, setToken] = useState(localStorage.getItem('JWT') ? localStorage.getItem('JWT') : '' );
   const [user, setUser] = useState('');
 
   const getToken = () => {
@@ -30,11 +30,13 @@ function App() {
   }, [token]);
 
   const logOut = async () => {
-
-    await axios.post('/users/logout', { headers: { Authorization: token } }).then((res) => {
+    console.log('BEFore '+ token)
+    await axios.post('/users/logout', {withCredentials: true},{ headers: {Authorization: token} }).then((res) => {
 
       localStorage.removeItem('JWT')
-      setToken(null)
+      setToken('')
+      setUser('')
+      
     }).catch((e) => console.log(e))
   }
   return (

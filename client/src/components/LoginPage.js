@@ -4,7 +4,10 @@ import { Container, Form, Button, InputGroup, Row } from 'react-bootstrap';
 
 export default function LoginPage(props) {
 
-    const [data, setData] = useState({});
+    const [data, setData] = useState({
+        email: '',
+        password: '',
+    });
     const [formControl, setFormControl] = useState({
         email: '',
         password: '',
