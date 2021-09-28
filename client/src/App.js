@@ -12,7 +12,7 @@ import TasksPage from './components/TasksPage';
 
 function App() {
   
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('JWT'));
   const [user, setUser] = useState(null);
   
   const getToken = () => {
