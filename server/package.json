@@ -1,9 +1,14 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js",
+    "server": "env-cmd -f config/dev.env node index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
   "description": "",
   "main": "index.js",
-  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {
