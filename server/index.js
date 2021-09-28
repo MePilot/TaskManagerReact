@@ -8,7 +8,7 @@ const {sendRemindEmail} = require('./emails/account')
 console.log('AAAAAAAAAAAAAAAAAAAA : '+ path.resolve(__dirname,'client','build','index.html'))
 
 app.use(express.json())
-//app.use(express.static(path.join(__dirname, 'client/build')));
+//app.fdfuse(express.static(path.join(__dirname, 'client/build')));
 
 if(process.env.NODE_ENV === 'production') {  
     app.use(express.static(path.join(__dirname, 'client/build')));    
