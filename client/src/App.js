@@ -37,7 +37,7 @@ function App() {
       setToken(null)
     }).catch((e) => console.log(e))
   }
-console.log(user)
+console.log('THE USER IS: '+ user)
   return (
 
     <div className="App">
